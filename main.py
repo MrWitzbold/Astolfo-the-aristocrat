@@ -22,8 +22,14 @@ async def on_ready():
 @client.event
 async def on_message(message):
     global conversation
+    if message.content == "die please" and str(message.author.id) == "774498932696547329":
+        await message.channel.send("As you wish master :skull:")
+        exit()
     if conversation and str(message.author.id) != "886317112367390760":
         response = chatbot.get_response(message.content)
+        async with message.channel.typing():
+            print("Waiting " + str(len(str(response))/15) + " seconds to say " + str(response))
+            time.sleep(len(str(response))/15)
         await message.channel.send(response)
     if message.content == "activate conversation and milk tea" and conversation == False:
         conversation = True
@@ -31,8 +37,4 @@ async def on_message(message):
         trainer.train("chatterbot.corpus.english")
         trainer.train("chatterbot.corpus.english.conversations")
         await message.channel.send("Activated conversation! :tea:")
-    if message.content == "die please" and str(message.author.id) == "774498932696547329":
-        await message.channel.send("As you wish master :skull:")
-        exit()
-
-client.run("ODg2MzE3MTEyMzY3MzkwNzYw.YTz1Ig.-7YhRdyzSkTFG4GSBdx66FxZlYc", bot = True)
+client.run("ODg2MzE3MTEyMzY3MzkwNzYw.YTz1Ig.7vl-V4CFYzeeJYK6GFhw3AX-2Ng", bot = True)

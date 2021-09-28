@@ -37,4 +37,6 @@ async def on_message(message):
         trainer.train("chatterbot.corpus.english")
         trainer.train("chatterbot.corpus.english.conversations")
         await message.channel.send("Activated conversation! :tea:")
-client.run("ODg2MzE3MTEyMzY3MzkwNzYw.YTz1Ig.7vl-V4CFYzeeJYK6GFhw3AX-2Ng", bot = True)
+
+token = open("token.txt", "r").read()
+client.run(token, bot = True)
